@@ -55,7 +55,7 @@ const Header = () => {
 
           <input
             type="text"
-            placeholder="Search by title, skill, or company"
+            placeholder="Search"
           ></input>
         </div>
       </div>
