@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "./feed.css";
-import { Create as CreateIcon, Image as ImageIcon, Subscriptions as SubscriptionsIcon, EventNote as EventNoteIcon, CalendarViewDay as CalendarViewDayIcon } from "@mui/icons-material";
+import {
+  Create as CreateIcon,
+  Image as ImageIcon,
+  Subscriptions as SubscriptionsIcon,
+  EventNote as EventNoteIcon,
+  CalendarViewDay as CalendarViewDayIcon,
+} from "@mui/icons-material";
 import InputOption from "./InputOption";
 import Post from "./Post";
-import { collection, addDoc, onSnapshot, orderBy, serverTimestamp, query } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  orderBy,
+  serverTimestamp,
+  query,
+} from "firebase/firestore";
 import { db } from "./firebase";
-import {  useSelector } from "react-redux";
-import FlipMove from 'react-flip-move';
+import { useSelector } from "react-redux";
+import FlipMove from "react-flip-move";
 
 import { selectUser } from "./features/userSlice";
 
@@ -16,7 +29,10 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const postsQuery = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    const postsQuery = query(
+      collection(db, "posts"),
+      orderBy("timestamp", "desc")
+    );
     const unsubscribe = onSnapshot(postsQuery, (snapshot) => {
       setPosts(
         snapshot.docs.map((doc) => ({
@@ -77,19 +93,22 @@ const Feed = () => {
         </div>
       </div>
       <FlipMove>
-      {posts.map(({ id, data: { name, description, message, photoUrl ,timestamp} }) => (
-        <Post
-          key={id}
-          name={name}
-          description={description}
-          message={message}
-          photoUrl={photoUrl}
-          timestamp={timestamp}
-        />
-      ))}
-     
+        {posts.map(
+          ({
+            id,
+            data: { name, description, message, photoUrl, timestamp },
+          }) => (
+            <Post
+              key={id}
+              name={name}
+              description={description}
+              message={message}
+              photoUrl={photoUrl}
+              timestamp={timestamp}
+            />
+          )
+        )}
       </FlipMove>
-      
     </div>
   );
 };
