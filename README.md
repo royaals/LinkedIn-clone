@@ -37,5 +37,5 @@ REACT_APP_FIREBASE_APP_ID=your-app-id
 ```bash
 npm start
 ```
-2. Open your web browser and navigate to `http://localhost:3000` to see the application run.
+2. Open your web browser and navigate to `http://localhost:3000` to see the application running.
 
